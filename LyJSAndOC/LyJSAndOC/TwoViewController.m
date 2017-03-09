@@ -117,6 +117,19 @@ JSExportAs
     };
 }
 
+///**
+// *  网页加载完毕的时候调用
+// */
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    // 跳到id对应的网页标签
+//    
+//    // 1.拼接Javacript代码
+//    NSString *js = [NSString stringWithFormat:@"window.location.href = '#%@';", self.html.ID];
+//    // 2.执行JavaScript代码
+//    [webView stringByEvaluatingJavaScriptFromString:js];
+//}
+
 #pragma mark - JSExport 协议关联 native 的方法的回调
 -(void)dealWithCalculateWithNumber:(NSNumber *)number
 {
