@@ -44,6 +44,7 @@ JSExportAs
     NSString *path = [[NSBundle mainBundle] pathForResource:@"JSCallOC.html" ofType:nil];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
     [self.webView loadRequest:request];
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -175,6 +176,10 @@ JSExportAs
         _webView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
         [_webView sizeToFit];
         _webView.delegate = self;
+        //自动检测电话号码，网址，邮件地址
+        _webView.dataDetectorTypes = UIDataDetectorTypeAll;
+        //缩放网页
+        _webView.scalesPageToFit = YES;
     }
     return _webView;
 }

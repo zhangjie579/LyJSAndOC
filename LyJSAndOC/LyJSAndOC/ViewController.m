@@ -35,7 +35,6 @@
     [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     [self.webView addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionNew context:nil];
     
-    
     //3.调用js方法
 //    window.webkit.messageHandlers.Location.postMessage(null);
     [self.configuration.userContentController addScriptMessageHandler:self name:@"ScanAction"];
