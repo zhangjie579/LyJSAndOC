@@ -40,16 +40,13 @@ JSExportAs
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:self.webView];
-//    self.title = @"UIWebView";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"JSCallOC.html" ofType:nil];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
     [self.webView loadRequest:request];
-    
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     // 以 html title 设置 导航栏 title
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
@@ -139,15 +136,12 @@ JSExportAs
 }
 
 //计算
-- (NSNumber *)calculateFactorialOfNumber:(NSNumber *)number
-{
+- (NSNumber *)calculateFactorialOfNumber:(NSNumber *)number {
     NSInteger i = [number integerValue];
-    if (i < 0)
-    {
+    if (i < 0) {
         return [NSNumber numberWithInteger:0];
     }
-    if (i == 0)
-    {
+    if (i == 0) {
         return [NSNumber numberWithInteger:1];
     }
     
@@ -162,13 +156,11 @@ JSExportAs
  push to second ViewController
  
  */
-- (void)pushToOtherController:(NSString *)view title:(NSString *)title
-{
+- (void)pushToOtherController:(NSString *)view title:(NSString *)title {
     NSLog(@"push");
 }
 
-- (UIWebView *)webView
-{
+- (UIWebView *)webView {
     if (!_webView) {
         _webView = [[UIWebView alloc] init];
         _webView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
@@ -182,8 +174,7 @@ JSExportAs
     return _webView;
 }
 
-- (UIView *)back
-{
+- (UIView *)back {
     if (!_back) {
         _back = [[UIView alloc] init];
         _back.backgroundColor = [UIColor greenColor];
@@ -192,8 +183,7 @@ JSExportAs
     return _back;
 }
 
-- (UIAlertController *)alertController
-{
+- (UIAlertController *)alertController {
     if (!_alertController) {
         _alertController = [UIAlertController alertControllerWithTitle:@"提示" message:nil preferredStyle:UIAlertControllerStyleAlert];
     }

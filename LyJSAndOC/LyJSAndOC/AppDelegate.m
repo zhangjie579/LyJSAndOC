@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface AppDelegate ()
 
@@ -16,10 +17,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
     return YES;
 }
 
+- (void)jsCallOc1 {
+    JSContext *context = [[JSContext alloc] init];
+    context[@"ocFunc1"] = ^(int a, int b) {
+        NSLog(@"%d", a + b);
+    };
+    
+    [context evaluateScript:@"ocFunc1(2, 5);"];
+}
+
+- (void)ocCallJS1 {
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:@"function jsFunc1(a, b) { return a + b };"];
+    JSValue *value = [context[@"jsFunc1"] callWithArguments:@[@2, @5]];
+    NSInteger number = [value toNumber].integerValue;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

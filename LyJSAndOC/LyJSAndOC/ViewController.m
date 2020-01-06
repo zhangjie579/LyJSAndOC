@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <WebKit/WebKit.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 #import "TwoViewController.h"
 
 @interface ViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
@@ -19,8 +20,6 @@
 @end
 
 @implementation ViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,54 +48,44 @@
 }
 
 //4.
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
-{
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     NSLog(@"%@", message.body);
     
-    if ([message.name isEqualToString:@"ScanAction"])
-    {
+    if ([message.name isEqualToString:@"ScanAction"]) {
 //        id messageBody = message.body;
         NSLog(@"扫一扫");
     }
-    else if ([message.name isEqualToString:@"Share"])
-    {
+    else if ([message.name isEqualToString:@"Share"]) {
         id body = message.body;
-        if ([body isKindOfClass:[NSDictionary class]])
-        {
+        if ([body isKindOfClass:[NSDictionary class]]) {
             NSString *content = body[@"content"];
             NSString *title = body[@"title"];
             NSString *url = body[@"url"];
             NSLog(@"分享content=%@title=%@url=%@",content,title,url);
         }
     }
-    else if ([message.name isEqualToString:@"Location"])
-    {
+    else if ([message.name isEqualToString:@"Location"]) {
         NSLog(@"定位");
     }
-    else if ([message.name isEqualToString:@"Color"])
-    {
+    else if ([message.name isEqualToString:@"Color"]) {
         NSLog(@"改变颜色");
         id body = message.body;
         
     }
-    else if ([message.name isEqualToString:@"Pay"])
-    {
+    else if ([message.name isEqualToString:@"Pay"]) {
         NSLog(@"支付");
     }
-    else if ([message.name isEqualToString:@"GoBack"])
-    {
+    else if ([message.name isEqualToString:@"GoBack"]) {
         NSLog(@"返回");
         
         [self.navigationController pushViewController:[[TwoViewController alloc] init] animated:YES];
     }
-    else if ([message.name isEqualToString:@"PlaySound"])
-    {
+    else if ([message.name isEqualToString:@"PlaySound"]) {
         NSLog(@"播放声音");
     }
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self.webView removeObserver:self forKeyPath:@"title"];
     [self.webView removeObserver:self forKeyPath:@"loading"];
     [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
@@ -114,8 +103,7 @@
         [self.progressView setAlpha:1.0f];
         
         //只有当进度条值小于进度的时候才赋值
-        if (self.progressView.progress < self.webView.estimatedProgress)
-        {
+        if (self.progressView.progress < self.webView.estimatedProgress) {
             [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
         }
         
@@ -123,8 +111,7 @@
             self.progressView.progress = 1.0;
         }
         
-        if(self.webView.estimatedProgress == 1.0f)
-        {
+        if(self.webView.estimatedProgress == 1.0f) {
             [UIView animateWithDuration:0.2 delay:0.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 [self.progressView setAlpha:0.0f];
             } completion:^(BOOL finished) {
@@ -132,20 +119,17 @@
             }];
         }
     }
-    else if ([keyPath isEqualToString:@"title"])
-    {
+    else if ([keyPath isEqualToString:@"title"]) {
         if (object == self.webView) {
             self.title = self.webView.title;
             
         }
-        else
-        {
+        else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
             
         }
     }
-    else if ([keyPath isEqualToString:@"loading"])
-    {
+    else if ([keyPath isEqualToString:@"loading"]) {
         NSLog(@"loading");
     }
     else {
@@ -168,14 +152,12 @@
 }
 
 // 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     
 }
 
 // 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
     
 }
 
@@ -253,8 +235,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (WKWebViewConfiguration *)configuration
-{
+- (WKWebViewConfiguration *)configuration {
     if (!_configuration) {
         _configuration = [[WKWebViewConfiguration alloc] init];
         //1.偏好设置
@@ -271,8 +252,7 @@
     return _configuration;
 }
 
-- (WKWebView *)webView
-{
+- (WKWebView *)webView {
     if (!_webView) {
         _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64) configuration:self.configuration];
         _webView.backgroundColor = [UIColor whiteColor];
@@ -287,8 +267,7 @@
     return _webView;
 }
 
-- (UIProgressView *)progressView
-{
+- (UIProgressView *)progressView {
     if (!_progressView) {
         _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
         //设置已走过进度的进度条颜色
