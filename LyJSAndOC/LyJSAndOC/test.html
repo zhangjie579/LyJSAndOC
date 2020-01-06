@@ -2,12 +2,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf8">
             <script language="javascript">
-                function scanClick() {
-                    window.webkit.messageHandlers.ScanAction.postMessage(null);
-                }
+            function scanClick() {
+                // html调用原生方法，ScanAction为原生方法名
+                window.webkit.messageHandlers.ScanAction.postMessage(null);
+            }
             
             function shareClick() {
-                //Share这个是自己定义的
+                // html传递数据给元素，Share这个是自己定义的
                 window.webkit.messageHandlers.Share.postMessage({title:'测试分享的标题',content:'测试分享的内容',url:'http://www.baidu.com'});
             }
             
@@ -63,7 +64,7 @@
             }
             
             
-            //自己写的方法
+            // 自己写的方法
             function sendCommand(cmd,param){
                 var url="testapp:"+cmd+":"+param;
                 document.location = url;

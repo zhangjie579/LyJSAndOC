@@ -11,6 +11,7 @@
 
 @protocol TestJS <JSExport>
 
+// PropertyName: html方法名, Selector: html方法名对应的oc方法名
 JSExportAs
 (calculateForJS,//这个方法是html里面的
   -(void)dealWithCalculateWithNumber:(NSNumber *)number
@@ -23,7 +24,7 @@ JSExportAs
 
 @end
 
-@interface TwoViewController ()<UIWebViewDelegate,TestJS>
+@interface TwoViewController () <UIWebViewDelegate,TestJS>
 
 @property(nonatomic,strong)UIWebView *webView;
 @property(nonatomic,strong)JSContext *context;
@@ -62,9 +63,7 @@ JSExportAs
     self.context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
     // 打印异常
-    self.context.exceptionHandler =
-    ^(JSContext *context, JSValue *exceptionValue)
-    {
+    self.context.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
         context.exception = exceptionValue;
         NSLog(@"%@", exceptionValue);
     };
@@ -132,11 +131,10 @@ JSExportAs
 //}
 
 #pragma mark - JSExport 协议关联 native 的方法的回调
--(void)dealWithCalculateWithNumber:(NSNumber *)number
-{
+-(void)dealWithCalculateWithNumber:(NSNumber *)number {
     NSNumber *result = [self calculateFactorialOfNumber:number];
     
-    //showResult也是html里面定义的
+    // showResult也是html里面定义的
     [self.context[@"showResult"] callWithArguments:@[result]];
 }
 
