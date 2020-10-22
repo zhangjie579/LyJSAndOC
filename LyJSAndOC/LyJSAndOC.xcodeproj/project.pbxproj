@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00A258FA2541476600F15F22 /* KcT1.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A258F92541476600F15F22 /* KcT1.m */; };
 		2F2D8A801E70F83100989635 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D8A7F1E70F83100989635 /* main.m */; };
 		2F2D8A831E70F83100989635 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D8A821E70F83100989635 /* AppDelegate.m */; };
 		2F2D8A861E70F83100989635 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D8A851E70F83100989635 /* ViewController.m */; };
@@ -39,8 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00A258F82541476600F15F22 /* KcT1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KcT1.h; sourceTree = "<group>"; };
-		00A258F92541476600F15F22 /* KcT1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KcT1.m; sourceTree = "<group>"; };
 		2F2D8A7B1E70F83100989635 /* LyJSAndOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyJSAndOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F2D8A7F1E70F83100989635 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F2D8A811E70F83100989635 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,8 +121,6 @@
 				2F2D8A7E1E70F83100989635 /* Supporting Files */,
 				2F2D8AB31E70F88700989635 /* TwoViewController.h */,
 				2F2D8AB41E70F88700989635 /* TwoViewController.m */,
-				00A258F82541476600F15F22 /* KcT1.h */,
-				00A258F92541476600F15F22 /* KcT1.m */,
 			);
 			path = LyJSAndOC;
 			sourceTree = "<group>";
@@ -242,7 +237,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -292,7 +286,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00A258FA2541476600F15F22 /* KcT1.m in Sources */,
 				2F2D8A861E70F83100989635 /* ViewController.m in Sources */,
 				2F2D8A831E70F83100989635 /* AppDelegate.m in Sources */,
 				2F2D8A801E70F83100989635 /* main.m in Sources */,

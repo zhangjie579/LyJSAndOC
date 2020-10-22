@@ -10,7 +10,6 @@
 #import <WebKit/WebKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "TwoViewController.h"
-#import "KcT1.h"
 
 @interface ViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
