@@ -22,9 +22,6 @@
 
 @implementation ViewController
 
-// 2
-// 1
-// test
 - (void)viewDidLoad {
     [super viewDidLoad];
     
