@@ -22,8 +22,6 @@
     // feat - 1
     // feat - 2
     
-    // 1
-    
     return YES;
 }
 
